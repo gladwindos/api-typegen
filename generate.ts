@@ -1,20 +1,37 @@
 import { compile } from "json-schema-to-typescript";
 import * as fs from "fs";
 
+type JsonPrimitive = string | number | boolean | null;
+type JsonArray = JsonValue[];
+type JsonObject = { [key: string]: JsonValue };
+type JsonValue = JsonPrimitive | JsonObject | JsonArray;
+
+type EndpointBody = JsonObject | JsonArray | string;
+
 interface Endpoint {
   typeName: string;
   url: string;
-  method: string;
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
   headers?: Record<string, string>;
+  queryParams?: Record<string, string>;
+  body?: EndpointBody;
 }
 
-async function fetchData(
-  url: string,
-  method: string,
-  headers: Record<string, string> = {}
-): Promise<any> {
+async function fetchData(endpoint: Endpoint): Promise<any> {
   try {
-    const response = await fetch(url, { method, headers });
+    const { url, method, headers = {}, queryParams = {}, body } = endpoint;
+
+    const urlObj = new URL(url);
+    Object.entries(queryParams).forEach(([key, value]) => {
+      urlObj.searchParams.append(key, value);
+    });
+
+    const response = await fetch(urlObj.toString(), {
+      method,
+      headers,
+      body: body ? JSON.stringify(body) : undefined,
+    });
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -65,10 +82,10 @@ function saveTypesToFile(types: string, filePath: string): void {
 async function generateTypesFromApis(endpoints: Endpoint[], filePath: string) {
   let allTypes = "";
 
-  for (const { url, method, headers = {}, typeName } of endpoints) {
-    const data = await fetchData(url, method, headers);
+  for (const endpoint of endpoints) {
+    const data = await fetchData(endpoint);
     const schema = generateJsonSchema(data);
-    const types = await generateTypes(schema, typeName);
+    const types = await generateTypes(schema, endpoint.typeName);
     allTypes += types + "\n";
   }
 
@@ -78,17 +95,38 @@ async function generateTypesFromApis(endpoints: Endpoint[], filePath: string) {
 async function main() {
   const endpoints: Endpoint[] = [
     {
+      typeName: "BearerData",
       url: "https://httpbin.org/bearer",
       method: "GET",
       headers: {
-        Authorization: `Bearer test-bearer-token`,
+        Authorization: `Bearer YOUR_BEARER_TOKEN_HERE`,
       },
-      typeName: "BearerData",
     },
     {
+      typeName: "Todo",
       url: "https://jsonplaceholder.typicode.com/todos/1",
       method: "GET",
-      typeName: "Todo",
+    },
+    {
+      typeName: "Post",
+      url: "https://jsonplaceholder.typicode.com/posts",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        title: "foo",
+        content: "bar",
+        userId: 1,
+      },
+    },
+    {
+      typeName: "User",
+      url: "https://jsonplaceholder.typicode.com/users",
+      method: "GET",
+      queryParams: {
+        id: "1",
+      },
     },
   ];
 
