@@ -17,9 +17,59 @@ export interface Post {
   id: number;
 }
 
-export interface User {
-  "0": {
-    [k: string]: unknown;
+export interface UsersItem {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
   };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+export type Users = UsersItem[];
+
+export interface Anything {
+  args: {};
+  data: string;
+  files: {};
+  form: {};
+  headers: {
+    Accept: string;
+    "Accept-Encoding": string;
+    "Accept-Language": string;
+    "Content-Length": string;
+    "Content-Type": string;
+    Host: string;
+    "Sec-Fetch-Mode": string;
+    "User-Agent": string;
+    "X-Amzn-Trace-Id": string;
+  };
+  json: {
+    users: {
+      friends: {
+        id: number;
+        name: string;
+      }[];
+      id: number;
+      name: string;
+    }[];
+  };
+  method: string;
+  origin: string;
+  url: string;
 }
 

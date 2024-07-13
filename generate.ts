@@ -44,30 +44,51 @@ async function fetchData(endpoint: Endpoint): Promise<any> {
 }
 
 function generateJsonSchema(data: any): any {
-  const schema: any = {
-    type: "object",
-    properties: {},
-    required: [],
-    additionalProperties: false,
-  };
+  if (Array.isArray(data)) {
+    return {
+      type: "array",
+      items: data.length > 0 ? generateJsonSchema(data[0]) : {},
+    };
+  } else if (typeof data === "object" && data !== null) {
+    const schema: any = {
+      type: "object",
+      properties: {},
+      required: [],
+      additionalProperties: false,
+    };
 
-  for (const key of Object.keys(data)) {
-    schema.properties[key] = { type: typeof data[key] };
-
-    if (data[key] !== null && data[key] !== undefined) {
-      schema.required.push(key);
+    for (const [key, value] of Object.entries(data)) {
+      schema.properties[key] = generateJsonSchema(value);
+      if (value !== null && value !== undefined) {
+        schema.required.push(key);
+      }
     }
-  }
 
-  return schema;
+    return schema;
+  } else {
+    return { type: typeof data };
+  }
 }
 
 async function generateTypes(schema: any, typeName: string): Promise<string> {
   try {
-    const ts = await compile(schema, typeName, {
-      bannerComment: "",
-    });
-    return ts;
+    if (schema.type === "array") {
+      const itemTypeName = `${typeName}Item`;
+      const itemSchema = schema.items;
+
+      const itemType = await compile(itemSchema, itemTypeName, {
+        bannerComment: "",
+      });
+
+      const arrayType = `export type ${typeName} = ${itemTypeName}[];\n`;
+
+      return itemType + arrayType;
+    } else {
+      const type = await compile(schema, typeName, {
+        bannerComment: "",
+      });
+      return type;
+    }
   } catch (error) {
     console.error("Error generating TypeScript types:", error);
     process.exit(1);
@@ -121,11 +142,34 @@ async function main() {
       },
     },
     {
-      typeName: "User",
+      typeName: "Users",
       url: "https://jsonplaceholder.typicode.com/users",
       method: "GET",
       queryParams: {
         id: "1",
+      },
+    },
+    {
+      typeName: "Anything",
+      url: "https://httpbin.org/anything",
+      method: "POST",
+      body: {
+        users: [
+          {
+            id: 1,
+            name: "gladz",
+            friends: [
+              {
+                id: 2,
+                name: "John",
+              },
+              {
+                id: 3,
+                name: "Jess",
+              },
+            ],
+          },
+        ],
       },
     },
   ];
