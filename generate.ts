@@ -121,21 +121,6 @@ async function generateTypesFromApis(endpoints: Endpoint[], filePath: string) {
   saveTypesToFile(allTypes, filePath);
 }
 
-async function generateSchemasFromApis(
-  endpoints: Endpoint[],
-  filePath: string
-) {
-  let allSchemas: Record<string, any> = {};
-
-  for (const endpoint of endpoints) {
-    const data = await fetchData(endpoint);
-    const schema = generateJsonSchema(data);
-    allSchemas[endpoint.typeName] = schema;
-  }
-
-  saveJsonSchemaToFile(allSchemas, filePath);
-}
-
 async function main() {
   const endpoints: Endpoint[] = [
     {
@@ -197,8 +182,7 @@ async function main() {
     },
   ];
 
-  await generateTypesFromApis(endpoints, "./responseTypes.ts");
-  await generateSchemasFromApis(endpoints, "./schemas.json");
+  await generateTypesFromApis(endpoints, "./exampleTypes.ts");
 }
 
 main();
