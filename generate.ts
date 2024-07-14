@@ -1,5 +1,5 @@
+import fs from "fs";
 import { compile } from "json-schema-to-typescript";
-import * as fs from "fs";
 
 type JsonPrimitive = string | number | boolean | null;
 type JsonArray = JsonValue[];
