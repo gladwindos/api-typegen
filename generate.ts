@@ -1,5 +1,5 @@
 import fs from "fs";
-import { compile } from "json-schema-to-typescript";
+import { compile, type JSONSchema } from "json-schema-to-typescript";
 
 type JsonPrimitive = string | number | boolean | null;
 type JsonArray = JsonValue[];
@@ -43,14 +43,14 @@ async function fetchData(endpoint: Endpoint): Promise<unknown> {
   }
 }
 
-function generateJsonSchema(data: unknown): any {
+function generateJsonSchema(data: unknown): JSONSchema {
   if (Array.isArray(data)) {
     return {
       type: "array",
       items: data.length > 0 ? generateJsonSchema(data[0]) : {},
     };
   } else if (typeof data === "object" && data !== null) {
-    const schema: any = {
+    const schema: JSONSchema = {
       type: "object",
       properties: {},
       required: [],
@@ -58,27 +58,31 @@ function generateJsonSchema(data: unknown): any {
     };
 
     for (const [key, value] of Object.entries(data)) {
-      schema.properties[key] = generateJsonSchema(value);
+      (schema.properties as Record<string, JSONSchema>)[key] =
+        generateJsonSchema(value);
       if (value !== null && value !== undefined) {
-        schema.required.push(key);
+        (schema.required as string[]).push(key);
       }
     }
 
     return schema;
   } else {
-    return { type: typeof data };
+    return { type: typeof data as JSONSchema["type"] };
   }
 }
 
-function saveJsonSchemaToFile(schema: any, filePath: string): void {
+function saveJsonSchemaToFile(schema: JSONSchema, filePath: string): void {
   const jsonString = JSON.stringify(schema, null, 2);
   fs.writeFileSync(filePath, jsonString);
   console.log("JSON Schema saved to:", filePath);
 }
 
-async function generateTypes(schema: any, typeName: string): Promise<string> {
+async function generateTypes(
+  schema: JSONSchema,
+  typeName: string
+): Promise<string> {
   try {
-    if (schema.type === "array") {
+    if (schema.type === "array" && schema.items) {
       const itemTypeName = `${typeName}Item`;
       const itemSchema = schema.items;
 
