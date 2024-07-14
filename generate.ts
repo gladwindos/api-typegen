@@ -17,7 +17,7 @@ interface Endpoint {
   body?: EndpointBody;
 }
 
-async function fetchData(endpoint: Endpoint): Promise<any> {
+async function fetchData(endpoint: Endpoint): Promise<unknown> {
   try {
     const { url, method, headers = {}, queryParams = {}, body } = endpoint;
 
@@ -43,7 +43,7 @@ async function fetchData(endpoint: Endpoint): Promise<any> {
   }
 }
 
-function generateJsonSchema(data: any): any {
+function generateJsonSchema(data: unknown): any {
   if (Array.isArray(data)) {
     return {
       type: "array",
