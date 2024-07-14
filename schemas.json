@@ -1,0 +1,303 @@
+{
+  "BearerData": {
+    "type": "object",
+    "properties": {
+      "authenticated": {
+        "type": "boolean"
+      },
+      "token": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "authenticated",
+      "token"
+    ],
+    "additionalProperties": false
+  },
+  "Todo": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "number"
+      },
+      "id": {
+        "type": "number"
+      },
+      "title": {
+        "type": "string"
+      },
+      "completed": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "userId",
+      "id",
+      "title",
+      "completed"
+    ],
+    "additionalProperties": false
+  },
+  "Post": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string"
+      },
+      "content": {
+        "type": "string"
+      },
+      "userId": {
+        "type": "number"
+      },
+      "id": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "title",
+      "content",
+      "userId",
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "Users": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string"
+            },
+            "suite": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "zipcode": {
+              "type": "string"
+            },
+            "geo": {
+              "type": "object",
+              "properties": {
+                "lat": {
+                  "type": "string"
+                },
+                "lng": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "lat",
+                "lng"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "street",
+            "suite",
+            "city",
+            "zipcode",
+            "geo"
+          ],
+          "additionalProperties": false
+        },
+        "phone": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "company": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "catchPhrase": {
+              "type": "string"
+            },
+            "bs": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "catchPhrase",
+            "bs"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "username",
+        "email",
+        "address",
+        "phone",
+        "website",
+        "company"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "Anything": {
+    "type": "object",
+    "properties": {
+      "args": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "data": {
+        "type": "string"
+      },
+      "files": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "form": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "headers": {
+        "type": "object",
+        "properties": {
+          "Accept": {
+            "type": "string"
+          },
+          "Accept-Encoding": {
+            "type": "string"
+          },
+          "Accept-Language": {
+            "type": "string"
+          },
+          "Content-Length": {
+            "type": "string"
+          },
+          "Content-Type": {
+            "type": "string"
+          },
+          "Host": {
+            "type": "string"
+          },
+          "Sec-Fetch-Mode": {
+            "type": "string"
+          },
+          "User-Agent": {
+            "type": "string"
+          },
+          "X-Amzn-Trace-Id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Accept",
+          "Accept-Encoding",
+          "Accept-Language",
+          "Content-Length",
+          "Content-Type",
+          "Host",
+          "Sec-Fetch-Mode",
+          "User-Agent",
+          "X-Amzn-Trace-Id"
+        ],
+        "additionalProperties": false
+      },
+      "json": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "friends": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "id": {
+                  "type": "number"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "friends",
+                "id",
+                "name"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "users"
+        ],
+        "additionalProperties": false
+      },
+      "method": {
+        "type": "string"
+      },
+      "origin": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "args",
+      "data",
+      "files",
+      "form",
+      "headers",
+      "json",
+      "method",
+      "origin",
+      "url"
+    ],
+    "additionalProperties": false
+  }
+}

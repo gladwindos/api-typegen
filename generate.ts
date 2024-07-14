@@ -70,6 +70,12 @@ function generateJsonSchema(data: any): any {
   }
 }
 
+function saveJsonSchemaToFile(schema: any, filePath: string): void {
+  const jsonString = JSON.stringify(schema, null, 2);
+  fs.writeFileSync(filePath, jsonString);
+  console.log("JSON Schema saved to:", filePath);
+}
+
 async function generateTypes(schema: any, typeName: string): Promise<string> {
   try {
     if (schema.type === "array") {
@@ -111,6 +117,21 @@ async function generateTypesFromApis(endpoints: Endpoint[], filePath: string) {
   }
 
   saveTypesToFile(allTypes, filePath);
+}
+
+async function generateSchemasFromApis(
+  endpoints: Endpoint[],
+  filePath: string
+) {
+  let allSchemas: Record<string, any> = {};
+
+  for (const endpoint of endpoints) {
+    const data = await fetchData(endpoint);
+    const schema = generateJsonSchema(data);
+    allSchemas[endpoint.typeName] = schema;
+  }
+
+  saveJsonSchemaToFile(allSchemas, filePath);
 }
 
 async function main() {
@@ -174,8 +195,8 @@ async function main() {
     },
   ];
 
-  const filePath = "./responseTypes.ts";
-  await generateTypesFromApis(endpoints, filePath);
+  await generateTypesFromApis(endpoints, "./responseTypes.ts");
+  await generateSchemasFromApis(endpoints, "./schemas.json");
 }
 
 main();
