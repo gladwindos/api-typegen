@@ -3,64 +3,118 @@
     "type": "object",
     "properties": {
       "authenticated": {
-        "type": "boolean"
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "token": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       }
     },
-    "required": [
-      "authenticated",
-      "token"
-    ],
     "additionalProperties": false
   },
   "Todo": {
     "type": "object",
     "properties": {
       "userId": {
-        "type": "number"
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "id": {
-        "type": "number"
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "title": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "completed": {
-        "type": "boolean"
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
       }
     },
-    "required": [
-      "userId",
-      "id",
-      "title",
-      "completed"
-    ],
     "additionalProperties": false
   },
   "Post": {
     "type": "object",
     "properties": {
       "title": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "content": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "userId": {
-        "type": "number"
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "id": {
-        "type": "number"
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "null"
+          }
+        ]
       }
     },
-    "required": [
-      "title",
-      "content",
-      "userId",
-      "id"
-    ],
     "additionalProperties": false
   },
   "Users": {
@@ -69,95 +123,174 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "name": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "username": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "email": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "address": {
           "type": "object",
           "properties": {
             "street": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "suite": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "city": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "zipcode": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "geo": {
               "type": "object",
               "properties": {
                 "lat": {
-                  "type": "string"
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
                 },
                 "lng": {
-                  "type": "string"
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
                 }
               },
-              "required": [
-                "lat",
-                "lng"
-              ],
               "additionalProperties": false
             }
           },
-          "required": [
-            "street",
-            "suite",
-            "city",
-            "zipcode",
-            "geo"
-          ],
           "additionalProperties": false
         },
         "phone": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "website": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "company": {
           "type": "object",
           "properties": {
             "name": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "catchPhrase": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "bs": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             }
           },
-          "required": [
-            "name",
-            "catchPhrase",
-            "bs"
-          ],
           "additionalProperties": false
         }
       },
-      "required": [
-        "id",
-        "name",
-        "username",
-        "email",
-        "address",
-        "phone",
-        "website",
-        "company"
-      ],
       "additionalProperties": false
     }
   },
@@ -167,66 +300,122 @@
       "args": {
         "type": "object",
         "properties": {},
-        "required": [],
         "additionalProperties": false
       },
       "data": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "files": {
         "type": "object",
         "properties": {},
-        "required": [],
         "additionalProperties": false
       },
       "form": {
         "type": "object",
         "properties": {},
-        "required": [],
         "additionalProperties": false
       },
       "headers": {
         "type": "object",
         "properties": {
           "Accept": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "Accept-Encoding": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "Accept-Language": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "Content-Length": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "Content-Type": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "Host": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "Sec-Fetch-Mode": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "User-Agent": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "X-Amzn-Trace-Id": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
-        "required": [
-          "Accept",
-          "Accept-Encoding",
-          "Accept-Language",
-          "Content-Length",
-          "Content-Type",
-          "Host",
-          "Sec-Fetch-Mode",
-          "User-Agent",
-          "X-Amzn-Trace-Id"
-        ],
         "additionalProperties": false
       },
       "json": {
@@ -243,61 +432,87 @@
                     "type": "object",
                     "properties": {
                       "id": {
-                        "type": "number"
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
                       },
                       "name": {
-                        "type": "string"
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
                       }
                     },
-                    "required": [
-                      "id",
-                      "name"
-                    ],
                     "additionalProperties": false
                   }
                 },
                 "id": {
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
                 },
                 "name": {
-                  "type": "string"
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
                 }
               },
-              "required": [
-                "friends",
-                "id",
-                "name"
-              ],
               "additionalProperties": false
             }
           }
         },
-        "required": [
-          "users"
-        ],
         "additionalProperties": false
       },
       "method": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "origin": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "url": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
       }
     },
-    "required": [
-      "args",
-      "data",
-      "files",
-      "form",
-      "headers",
-      "json",
-      "method",
-      "origin",
-      "url"
-    ],
     "additionalProperties": false
   }
 }

@@ -53,21 +53,19 @@ function generateJsonSchema(data: unknown): JSONSchema {
     const schema: JSONSchema = {
       type: "object",
       properties: {},
-      required: [],
       additionalProperties: false,
     };
 
     for (const [key, value] of Object.entries(data)) {
       (schema.properties as Record<string, JSONSchema>)[key] =
         generateJsonSchema(value);
-      if (value !== null && value !== undefined) {
-        (schema.required as string[]).push(key);
-      }
     }
 
     return schema;
   } else {
-    return { type: typeof data as JSONSchema["type"] };
+    return {
+      anyOf: [{ type: typeof data as JSONSchema["type"] }, { type: "null" }],
+    };
   }
 }
 
