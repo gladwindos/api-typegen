@@ -9,7 +9,7 @@ export const validateConfig = (config: any, schema: JSONSchema): void => {
   if (!valid) {
     console.error("Invalid configuration:");
     validate.errors?.forEach((error) => {
-      console.error(`  ${error.instancePath} ${error.message}`);
+      console.error(error);
     });
     process.exit(1);
   }

@@ -4,7 +4,7 @@
       "typeName": "BearerData",
       "url": "https://httpbin.org/bearer",
       "method": "GET",
-      "hesaders": {
+      "headers": {
         "Authorization": "Bearer YOUR_BEARER_TOKEN_HERE"
       }
     },
