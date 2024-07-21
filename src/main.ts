@@ -1,5 +1,5 @@
-import { generateTypes } from ".";
 import { getConfig } from "./config/getConfig";
+import { generateTypes } from "./generateTypes";
 import { saveTypesToFile } from "./utils/saveTypesToFile";
 
 const main = async () => {
