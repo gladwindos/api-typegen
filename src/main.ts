@@ -1,5 +1,6 @@
 import { generateTypes } from ".";
 import { Endpoint } from "./types";
+import { saveTypesToFile } from "./utils/saveTypesToFile";
 
 const main = async () => {
   const endpoints: Endpoint[] = [
@@ -15,6 +16,12 @@ const main = async () => {
       typeName: "Todo",
       url: "https://jsonplaceholder.typicode.com/todos/1",
       method: "GET",
+      override: {
+        properties: {
+          completed: { type: ["boolean", "null"] },
+        },
+        required: ["id", "title"],
+      },
     },
     {
       typeName: "Post",
@@ -35,6 +42,25 @@ const main = async () => {
       method: "GET",
       queryParams: {
         id: "1",
+      },
+      override: {
+        items: {
+          properties: {
+            name: { type: ["string", "null"] },
+            address: {
+              properties: {
+                geo: {
+                  properties: {
+                    lat: { type: ["string", "null"] },
+                    lng: { type: ["string", "null"] },
+                  },
+                  required: ["lat", "lng"],
+                },
+              },
+            },
+          },
+          required: ["id", "name"],
+        },
       },
     },
     {
@@ -59,10 +85,21 @@ const main = async () => {
           },
         ],
       },
+      override: {
+        properties: {
+          headers: {
+            properties: {
+              "User-Agent": { type: ["string", "null"] },
+            },
+          },
+        },
+      },
     },
   ];
 
-  await generateTypes(endpoints, "./exampleTypes.ts");
+  const types = await generateTypes(endpoints);
+
+  saveTypesToFile(types, "./exampleTypes.ts");
 };
 
 main();

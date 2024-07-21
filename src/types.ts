@@ -1,3 +1,5 @@
+import { type JSONSchema } from "json-schema-to-typescript";
+
 export type JsonPrimitive = string | number | boolean | null;
 export type JsonArray = JsonValue[];
 export type JsonObject = { [key: string]: JsonValue };
@@ -12,4 +14,5 @@ export interface Endpoint {
   headers?: Record<string, string>;
   queryParams?: Record<string, string>;
   body?: EndpointBody;
+  override?: JSONSchema;
 }

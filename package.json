@@ -1,5 +1,5 @@
 {
-  "name": "generate-api-types",
+  "name": "api-typegen",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",

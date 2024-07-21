@@ -21,7 +21,7 @@ export const inferJsonSchema = (data: unknown): JSONSchema => {
     return schema;
   } else {
     return {
-      anyOf: [{ type: typeof data as JSONSchema["type"] }, { type: "null" }],
+      type: typeof data as JSONSchema["type"],
     };
   }
 };
