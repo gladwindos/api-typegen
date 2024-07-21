@@ -16,3 +16,8 @@ export interface Endpoint {
   body?: EndpointBody;
   override?: JSONSchema;
 }
+
+// This type is used to generate the schema.json using https://github.com/vega/ts-json-schema-generator
+export interface Config {
+  endpoints: Endpoint[];
+}

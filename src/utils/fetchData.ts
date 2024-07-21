@@ -1,4 +1,4 @@
-import { Endpoint } from "../types";
+import { Endpoint } from "../config/types";
 
 export const fetchData = async (endpoint: Endpoint): Promise<unknown> => {
   try {

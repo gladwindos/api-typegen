@@ -1,4 +1,4 @@
-import { Endpoint } from "./types";
+import { Endpoint } from "./config/types";
 import { fetchData } from "./utils/fetchData";
 import { inferJsonSchema } from "./utils/inferJsonSchema";
 import { convertSchemaToType } from "./utils/convertSchemaToType";
