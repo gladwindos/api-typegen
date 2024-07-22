@@ -14,9 +14,6 @@ dependencies:
   generate-schema:
     specifier: ^2.6.0
     version: 2.6.0
-  genson-js:
-    specifier: ^0.0.8
-    version: 0.0.8
   json-schema-to-typescript:
     specifier: ^14.0.5
     version: 14.0.5
@@ -924,10 +921,6 @@ packages:
     dependencies:
       commander: 2.20.3
       type-of-is: 3.5.1
-    dev: false
-
-  /genson-js@0.0.8:
-    resolution: {integrity: sha512-4NUusDTwF+lzYh72uKV+Uvpky9iPO+YDIMpGImA5pbHfLV9HwgRCA4hYjGu78V4J4Cx2IZRTFfRERn9aUs74mw==}
     dev: false
 
   /get-func-name@2.0.2:
