@@ -9,7 +9,7 @@ export { type Endpoint } from "./config/types";
 
 const main = async (
   configPath: string = "./config.json",
-  outputPath: string = "./types.ts"
+  outputPath: string = "./apiTypegen.ts"
 ) => {
   const config = getConfig(configPath);
 

@@ -86,11 +86,23 @@ describe("inferJsonSchema", () => {
     expect(inferJsonSchema(data)).toEqual(expectedSchema);
   });
 
-  it("should handle empty objects", () => {
+  it("should handle empty objects with additionalProperties true", () => {
     const data = {};
     const expectedSchema: JSONSchema = {
       type: "object",
       properties: {},
+      additionalProperties: true,
+    };
+    expect(inferJsonSchema(data)).toEqual(expectedSchema);
+  });
+
+  it("should handle non-empty objects with additionalProperties false", () => {
+    const data = { key: "value" };
+    const expectedSchema: JSONSchema = {
+      type: "object",
+      properties: {
+        key: { type: "string" },
+      },
       additionalProperties: false,
     };
     expect(inferJsonSchema(data)).toEqual(expectedSchema);

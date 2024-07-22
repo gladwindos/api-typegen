@@ -7,10 +7,12 @@ export const inferJsonSchema = (data: unknown): JSONSchema => {
       items: data.length > 0 ? inferJsonSchema(data[0]) : {},
     };
   } else if (typeof data === "object" && data !== null) {
+    const additionalProperties = Object.keys(data).length === 0;
+
     const schema: JSONSchema = {
       type: "object",
       properties: {},
-      additionalProperties: false,
+      additionalProperties,
     };
 
     for (const [key, value] of Object.entries(data)) {
