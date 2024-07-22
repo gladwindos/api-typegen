@@ -7,7 +7,7 @@ import { saveTypesToFile } from "./saveTypesToFile";
 export { generateTypes };
 export { type Endpoint } from "./config/types";
 
-const apiTypegen = async (
+const main = async (
   configPath: string = "./config.json",
   outputPath: string = "./types.ts"
 ) => {
@@ -34,7 +34,9 @@ const setupCli = async () => {
 
   const options = program.opts();
 
-  apiTypegen(options.config, options.output);
+  main(options.config, options.output);
 };
 
-setupCli();
+if (require.main === module) {
+  setupCli();
+}
