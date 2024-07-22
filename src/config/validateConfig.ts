@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import { type JSONSchema } from "json-schema-to-typescript";
 
-export const validateConfig = (config: any, schema: JSONSchema): void => {
+export const validateConfig = (config: unknown, schema: JSONSchema): void => {
   const ajv = new Ajv({ allErrors: true, allowUnionTypes: true });
   const validate = ajv.compile(schema);
   const valid = validate(config);

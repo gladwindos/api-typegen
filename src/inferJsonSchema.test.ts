@@ -97,7 +97,7 @@ describe("inferJsonSchema", () => {
   });
 
   it("should handle empty arrays", () => {
-    const data: any[] = [];
+    const data = [];
     const expectedSchema: JSONSchema = {
       type: "array",
       items: {},

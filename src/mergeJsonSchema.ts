@@ -55,7 +55,7 @@ export const mergeWithJsonSchema = (
         mergedSchema.required = override.required;
       }
     } else {
-      (mergedSchema as any)[key] = override[key];
+      mergedSchema[key] = override[key];
     }
   }
 
