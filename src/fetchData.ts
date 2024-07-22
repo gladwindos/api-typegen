@@ -16,7 +16,8 @@ export const fetchData = async (endpoint: Endpoint): Promise<unknown> => {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const message = `Failed to fetch data from ${url}. Status: ${response.status}`;
+      throw new Error(message);
     }
     const data = await response.json();
     return data;

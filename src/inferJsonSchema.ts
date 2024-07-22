@@ -19,6 +19,10 @@ export const inferJsonSchema = (data: unknown): JSONSchema => {
     }
 
     return schema;
+  } else if (data === null) {
+    return {
+      type: "null",
+    };
   } else {
     return {
       type: typeof data as JSONSchema["type"],

@@ -59,6 +59,7 @@ export interface Anything {
     "X-Amzn-Trace-Id"?: string;
   };
   json?: {
+    foo?: null;
     users?: {
       friends?: {
         id?: number;

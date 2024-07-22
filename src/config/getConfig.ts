@@ -15,7 +15,7 @@ export const getConfig = (filePath: string): Config => {
     validateConfig(config, schema);
     return config;
   } catch (error) {
-    console.error("Error reading or validating config file:", error);
+    console.error("Error getting config:", error);
     process.exit(1);
   }
 };

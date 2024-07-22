@@ -64,6 +64,7 @@
       "url": "https://httpbin.org/anything",
       "method": "POST",
       "body": {
+        "foo": null,
         "users": [
           {
             "id": 1,

@@ -1,5 +1,27 @@
 import { type JSONSchema } from "json-schema-to-typescript";
 
+export const mergeProperties = (
+  generatedProperties: Record<string, JSONSchema>,
+  overrideProperties: Record<string, JSONSchema>
+): Record<string, JSONSchema> => {
+  const mergedProperties: Record<string, JSONSchema> = {
+    ...generatedProperties,
+  };
+
+  for (const key in overrideProperties) {
+    if (mergedProperties[key]) {
+      mergedProperties[key] = mergeWithJsonSchema(
+        mergedProperties[key],
+        overrideProperties[key]
+      );
+    } else {
+      mergedProperties[key] = overrideProperties[key];
+    }
+  }
+
+  return mergedProperties;
+};
+
 export const mergeWithJsonSchema = (
   generatedSchema: JSONSchema,
   override: JSONSchema
@@ -38,26 +60,4 @@ export const mergeWithJsonSchema = (
   }
 
   return mergedSchema;
-};
-
-const mergeProperties = (
-  generatedProperties: Record<string, JSONSchema>,
-  overrideProperties: Record<string, JSONSchema>
-): Record<string, JSONSchema> => {
-  const mergedProperties: Record<string, JSONSchema> = {
-    ...generatedProperties,
-  };
-
-  for (const key in overrideProperties) {
-    if (mergedProperties[key]) {
-      mergedProperties[key] = mergeWithJsonSchema(
-        mergedProperties[key],
-        overrideProperties[key]
-      );
-    } else {
-      mergedProperties[key] = overrideProperties[key];
-    }
-  }
-
-  return mergedProperties;
 };

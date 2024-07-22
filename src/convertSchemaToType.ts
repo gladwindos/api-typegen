@@ -23,7 +23,7 @@ export const convertSchemaToType = async (
       return type;
     }
   } catch (error) {
-    console.error("Error generating TypeScript types:", error);
+    console.error(`Error converting schema to type for ${typeName}:`, error);
     process.exit(1);
   }
 };
