@@ -1,8 +1,8 @@
 import { Endpoint } from "./config/types";
-import { convertSchemaToType } from "./utils/convertSchemaToType";
-import { fetchData } from "./utils/fetchData";
-import { inferJsonSchema } from "./utils/inferJsonSchema";
-import { mergeWithJsonSchema } from "./utils/mergeJsonSchema";
+import { convertSchemaToType } from "./convertSchemaToType";
+import { fetchData } from "./fetchData";
+import { inferJsonSchema } from "./inferJsonSchema";
+import { mergeWithJsonSchema } from "./mergeJsonSchema";
 
 export const generateTypes = async (endpoints: Endpoint[]): Promise<string> => {
   let allTypes = "";

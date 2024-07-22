@@ -2,7 +2,7 @@
 import { Command } from "commander";
 import { getConfig } from "./config/getConfig";
 import { generateTypes } from "./generateTypes";
-import { saveTypesToFile } from "./utils/saveTypesToFile";
+import { saveTypesToFile } from "./saveTypesToFile";
 
 export { generateTypes };
 export { type Endpoint } from "./config/types";
