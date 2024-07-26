@@ -12,9 +12,11 @@
     "build": "tsup",
     "build:watch": "tsup --watch",
     "generate": "node dist/index.js",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "lint": "eslint .",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.2",
     "eslint": "^9.7.0",
+    "husky": "^9.1.2",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.17.0",
