@@ -1,82 +1,21 @@
-export interface BearerData {
-  authenticated?: boolean;
-  token?: string;
-}
-
 export interface Todo {
   userId?: number;
-  id: number;
-  title: string;
-  completed?: boolean | null;
+  id?: number;
+  title?: string;
+  completed?: boolean;
 }
 
-export interface Post {
-  title?: string;
-  content?: string;
+export interface PostsItem {
   userId?: number;
   id?: number;
+  title?: string;
+  body?: string;
 }
+export type Posts = PostsItem[];
 
-export interface UsersItem {
-  id: number;
-  name: string | null;
-  username?: string;
+export interface User {
+  name?: string;
   email?: string;
-  address?: {
-    street?: string;
-    suite?: string;
-    city?: string;
-    zipcode?: string;
-    geo?: {
-      lat: string | null;
-      lng: string | null;
-    };
-  };
-  phone?: string;
-  website?: string;
-  company?: {
-    name?: string;
-    catchPhrase?: string;
-    bs?: string;
-  };
-}
-export type Users = UsersItem[];
-
-export interface Anything {
-  args?: {
-    [k: string]: unknown;
-  };
-  data?: string;
-  files?: {
-    [k: string]: unknown;
-  };
-  form?: {
-    [k: string]: unknown;
-  };
-  headers?: {
-    Accept?: string;
-    "Accept-Encoding"?: string;
-    "Accept-Language"?: string;
-    "Content-Length"?: string;
-    "Content-Type"?: string;
-    Host?: string;
-    "Sec-Fetch-Mode"?: string;
-    "User-Agent"?: string | null;
-    "X-Amzn-Trace-Id"?: string;
-  };
-  json?: {
-    foo?: null;
-    users?: {
-      friends?: {
-        id?: number;
-        name?: string;
-      }[];
-      id?: number;
-      name?: string;
-    }[];
-  };
-  method?: string;
-  origin?: string;
-  url?: string;
+  id?: number;
 }
 
