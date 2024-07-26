@@ -27,7 +27,9 @@ const setupCli = async () => {
 
   program
     .version(packageJson.default.version)
-    .description("Generate TypeScript types from API endpoints")
+    .description(
+      "A TypeScript type generator that creates type definitions from API endpoint responses."
+    )
     .requiredOption("-c, --config <path>", "Path to the configuration file")
     .option("-o, --output <path>", "Path to the output file")
     .parse(process.argv);

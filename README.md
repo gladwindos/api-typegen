@@ -1,6 +1,6 @@
 # API Typegen
 
-A TypeScript type generator that creates type definitions from API endpoints.
+A TypeScript type generator that creates type definitions from API endpoint responses.
 
 ## Example
 
@@ -84,33 +84,37 @@ You can also use API Typegen programmatically:
 import fs from "fs";
 import { generateTypes, type Endpoint } from "api-typegen";
 
-const endpoints: Endpoint[] = [
-  {
-    typeName: "Todo",
-    url: "https://jsonplaceholder.typicode.com/todos/1",
-    method: "GET",
-  },
-  {
-    typeName: "Posts",
-    url: "https://jsonplaceholder.typicode.com/posts",
-    method: "GET",
-  },
-  {
-    typeName: "User",
-    url: "https://jsonplaceholder.typicode.com/users",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+const main = async () => {
+  const endpoints: Endpoint[] = [
+    {
+      typeName: "Todo",
+      url: "https://jsonplaceholder.typicode.com/todos/1",
+      method: "GET",
     },
-    body: {
-      name: "John Doe",
-      email: "johndoe@example.com",
+    {
+      typeName: "Posts",
+      url: "https://jsonplaceholder.typicode.com/posts",
+      method: "GET",
     },
-  },
-];
+    {
+      typeName: "User",
+      url: "https://jsonplaceholder.typicode.com/users",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        name: "John Doe",
+        email: "johndoe@example.com",
+      },
+    },
+  ];
 
-const types = await generateTypes(endpoints);
-fs.writeFileSync("types.ts", types);
+  const types = await generateTypes(endpoints);
+  fs.writeFileSync("exampleTypes.ts", types);
+};
+
+main();
 ```
 
 ## Configuration

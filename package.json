@@ -1,6 +1,6 @@
 {
   "name": "api-typegen",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -21,6 +21,10 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gladwindos/api-typegen.git"
+  },
   "devDependencies": {
     "@eslint/js": "^9.7.0",
     "@types/eslint__js": "^8.42.3",
