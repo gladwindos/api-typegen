@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsup",
     "build:watch": "tsup --watch",
-    "generate": "node dist/index.js",
+    "generate": "node dist/index.js -c ./example/config.json -o ./example/output.ts",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "lint": "eslint .",
