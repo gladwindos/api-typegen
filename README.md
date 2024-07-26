@@ -91,9 +91,21 @@ const endpoints: Endpoint[] = [
     method: "GET",
   },
   {
-    typeName: "Post",
+    typeName: "Posts",
     url: "https://jsonplaceholder.typicode.com/posts",
     method: "GET",
+  },
+  {
+    typeName: "User",
+    url: "https://jsonplaceholder.typicode.com/users",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      name: "John Doe",
+      email: "johndoe@example.com",
+    },
   },
 ];
 
@@ -121,7 +133,7 @@ Each endpoint in the configuration can have the following properties:
 
 ### Schema Override
 
-You can override a type by providing a JSON Schema object in the `override` property. This allows you to customize the generated types to better suit your needs. For example, the following configuration makes all the properties no longer optional and the `completed` property nullable:
+You can override a type by providing a JSON Schema object in the `override` property. This allows you to customize the generated types to better suit your needs. For example, the following configuration makes all the properties in `Todo` no longer optional and the `completed` property nullable:
 
 ```json
 {
