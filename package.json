@@ -12,7 +12,8 @@
     "build": "tsup",
     "build:watch": "tsup --watch",
     "generate": "node dist/index.js",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "lint": "eslint .",
     "clean": "rm -rf dist",
     "prepare": "husky"
