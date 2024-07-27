@@ -1,6 +1,6 @@
 # API Typegen
 
-A TypeScript type generator that creates type definitions from API endpoint responses.
+A TypeScript type generator that creates type definitions from API endpoint responses. Ideal for APIs that don't provide OpenAPI (Swagger) specifications.
 
 ## Example
 
